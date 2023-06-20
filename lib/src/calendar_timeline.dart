@@ -25,6 +25,7 @@ class CalendarTimeline extends StatefulWidget {
     this.dayColor,
     this.activeDayColor,
     this.activeBackgroundDayColor,
+    this.activeMonthColor,
     this.monthColor,
     this.dotsColor,
     this.dayNameColor,
@@ -61,6 +62,7 @@ class CalendarTimeline extends StatefulWidget {
   final Color? dayColor;
   final Color? activeDayColor;
   final Color? activeBackgroundDayColor;
+  final Color? activeMonthColor;
   final Color? monthColor;
   final Color? dotsColor;
   final Color? dayNameColor;
@@ -315,6 +317,7 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
       children: <Widget>[
         if (widget.showYears) _buildYearList(),
         _buildMonthList(),
+        const SizedBox(height: 2),
         _buildDayList(),
       ],
     );
@@ -407,7 +410,7 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
                   onTap: () => _onSelectMonth(index),
                   color: widget.monthColor,
                   shrink: widget.shrink,
-                  activeColor: widget.activeBackgroundDayColor,
+                  activeColor: widget.activeMonthColor,
                 ),
                 if (index == _months.length - 1)
                   // Last element to take space to do scroll to left side
@@ -453,11 +456,11 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
                 onTap: () => _onSelectDay(index),
                 available: widget.selectableDayPredicate == null ||
                     widget.selectableDayPredicate!(currentDay),
-                dayColor: widget.dayColor,
+                dayColor: Colors.yellow,
                 activeDayColor: widget.activeDayColor,
                 activeDayBackgroundColor: widget.activeBackgroundDayColor,
                 dotsColor: widget.dotsColor,
-                dayNameColor: widget.dayNameColor,
+                dayNameColor: Colors.green,
                 shrink: widget.shrink,
               ),
               if (index == _days.length - 1)
